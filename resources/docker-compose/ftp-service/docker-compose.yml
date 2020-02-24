@@ -1,0 +1,8 @@
+version: "3"
+services: 
+    ftp-service:
+        build: ./build
+        ports: 
+            - 8071:8071
+        volumes: 
+            - /home/huanhuan/myweb/images:/home/huanhuan/myweb/images

@@ -1,0 +1,33 @@
+spring:
+  application:
+    # 服务名(不能重名)
+    name: ftp-service
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册中心
+        server-addr: 192.168.132.130:8848
+  servlet:
+    multipart:
+      ##上传请求的大小
+      max-request-size: 10MB
+      ##上传的单文件大小
+      max-file-size: 10MB
+
+server:
+  # 服务端口
+  port: 8071
+management:
+  # 端点检查（健康检查）
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+my:
+  config:
+    # 文件保存路径
+    path: "/home/huanhuan/myweb/images"
+#    path: "F:/git_repository/VueSpringboot/images"
+    # 文件url
+    url:  "http://192.168.132.130:3000"
+

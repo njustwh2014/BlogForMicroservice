@@ -1,0 +1,46 @@
+**/target/**
+**/nacos-docker/**
+/front-end/**/test/**
+
+**/.mvn/**
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+back-end/**/nbproject/private/**
+back-end/**/build/**
+back-end/**/nbbuild/**
+back-end/**/dist/**
+back-end/**/nbdist/**
+back-end/**/.nb-gradle/**
+
+
+.DS_Store
+**/node_modules/**
+**/dist/**
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/unit/coverage/
+/test/e2e/reports/
+selenium-debug.log
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
