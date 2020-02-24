@@ -103,6 +103,23 @@ Feign 传递 Token | ✔
 
 ## 配置项以及如何启动
 
+### nacos注册中心安装
+```
+git clone https://github.com/nacos-group/nacos-docker.git
+cd nacos-docker
+```
+将`/resources`目录下的`standalone-mysql.yaml`替换`nacos-docker/example/standalone-mysql.yaml`。
+
+```
+# 单机模式运行
+docker-compose -f example/standalone-mysql.yaml up -d 
+docker-compose -f example/standalone-mysql.yaml logs -f
+```
+
+192.168.132.130:8848/nacos account/pass:nacos/nacos
+
+**注意：`standalone-mysql.yaml`修改端口防止端口冲突.**
+
 ### 基于docker-compose启动
 
 首先在idea中package springboot项目，然后复制对应jar包到`/resources/docker-compose`目录下，参考ftp-service，进行springboot容器化部署.
@@ -179,6 +196,14 @@ npm run dev
 
 ### 利用redis实现异步消息队列
 
-## 展望
+### 根据功能划分服务
 
-基于Springcloud-alibaba微服务化，实现一个方法即一个服务。
+### 利用FeignClient实现RPC通信
+
+### 容器化运行项目
+
+### 负载均衡
+
+
+
+
