@@ -204,6 +204,29 @@ npm run dev
 
 ### 负载均衡
 
+## 一些开发中的坑
+
+### feign实现multipartfile上传时出现no multipart boundary was found 问题
+
+在service-provider端重写`RequestInterceptor`中`apply()`方法，添加boundary.
+```java
+public class MyRequestInterceptor implements RequestInterceptor {
+    @Override
+    public void apply(RequestTemplate requestTemplate) {
+        Map<String, Collection<String>> map = requestTemplate.headers();
+        System.out.println(map.get("content-type"));
+
+        String boundary = Long.toHexString(System.currentTimeMillis());
+        String contentTypeHeaderValue = new StringBuilder()
+                .append("multipart/form-data")
+                .append("; charset=UTF-8")
+                .append("; boundary=").append(boundary)
+                .toString();
+
+        requestTemplate.header("content-type", contentTypeHeaderValue);
+    }
+```
+
 
 
 

@@ -31,8 +31,9 @@ public class FTPController {
     @Value("${my.config.url}")
     private String url;
 
-    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public JSONObject saveImage(@RequestPart(value = "editormd-image-file") MultipartFile image) {
+    @PostMapping(value = "/upload-image",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public JSONObject saveImage(@RequestPart(value = "editormd-image-file",required = false)MultipartFile image) {
         JSONObject jsonObject = new JSONObject();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         StringBuffer url = new StringBuffer();

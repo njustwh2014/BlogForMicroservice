@@ -40,3 +40,4 @@ services:
         - 8071:8071
     volumes: 
         - /home/huanhuan/myweb/images:/home/huanhuan/myweb/images
+    network_mode: host

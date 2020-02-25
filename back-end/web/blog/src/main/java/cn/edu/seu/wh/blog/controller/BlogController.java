@@ -11,6 +11,7 @@ package cn.edu.seu.wh.blog.controller;
 import cn.edu.seu.wh.blog.dao.BlogDao;
 import cn.edu.seu.wh.blog.result.ResultInfo;
 import cn.edu.seu.wh.blog.service.BlogService;
+import cn.edu.seu.wh.blog.service.UploadService;
 import cn.edu.seu.wh.blog.utils.FastDFSClient;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class BlogController {
     BlogDao blogDao;
     @Autowired
     BlogService blogService;
+    @Autowired
+    UploadService uploadService;
     // 发表博客
     @RequestMapping(value="/publish",method= RequestMethod.POST,produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResultInfo publishBlog(@RequestBody JSONObject jsonObject){
@@ -46,24 +49,12 @@ public class BlogController {
     }
 
     //图片上传
+    //接收图片的参数名需要为"editormd-image-file"
     @RequestMapping("/upload")
     @ResponseBody
     @RequiresAuthentication
-    //接收图片的参数名需要为"editormd-image-file"
-    public JSONObject saveImage(@RequestParam("editormd-image-file") MultipartFile file, HttpServletRequest request) {
-        JSONObject jsonObject = new JSONObject();
-        FastDFSClient fastDFSClient=new FastDFSClient();
-        String path="";
-        try {
-            // Get the file and save it somewhere
-            path=fastDFSClient.saveFile(file);
-        } catch (Exception e) {
-            logger.error("upload file failed",e);
-        }
-        jsonObject.put("url", path);//图片回显地址，即文件存放地址，应为虚拟路径
-        jsonObject.put("success", 1);//图片上传成功的信息码
-        jsonObject.put("message", "upload success!");//信息
-        return jsonObject;
+    public JSONObject saveImage(@RequestParam("editormd-image-file") MultipartFile file) {
+        return uploadService.saveImage(file);
     }
     /*加载blog
     * 前端json格式： start:需要加载页blog的第一个id，num加载页加载多少个blog,flag为0 时返回所有类型的blog
